@@ -81,3 +81,16 @@ public class OrderGateway {
   }
 
 }
+
+
+// usage
+
+ final String responseString = orderGateway.post(microServicesApiResolver.getBseMembersUrl(), addMemberRequest.toString());
+ final BseMemberDto bseMemberDto = deserializeContent(responseString, BseMemberDto.class);
+// https://www.baeldung.com/jackson-object-mapper-tutorial
+// https://www.baeldung.com/jackson-json-view-annotation
+ private <T> T deserializeContent(final String content, final Class<T> contentClass) throws IOException {
+    return objectMapper
+        .readerWithView(View.Bse.class).forType(contentClass)
+        .readValue(content);
+  }
