@@ -5,3 +5,5 @@
 - chunk(100 records out of 10000) oriented steps 
   
    step => item reader(csv) -> item processor (spring batch(app)) -> item writer(DB)  
+
+- job -> step -> tasklet (chunk-oriented-step-without-item-processor)
